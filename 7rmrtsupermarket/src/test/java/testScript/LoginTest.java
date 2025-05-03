@@ -8,10 +8,10 @@ public class LoginTest extends Base {
 @Test(groups= {"regression"},retryAnalyzer=retry.Retry.class)
 	public void verifyTheUserIsAbleToLoginUsingValidCredentials() throws Exception 
 	{
-		String username = "admin";
-		String password = "abcd";
-	/*String username = ExcelUtility.readStringData(1, 0, "loginpage");
-	String password = ExcelUtility.readStringData(1, 1, "loginpage");*/
+		/*String username = "admin";
+		String password = "abcd";*/
+	String username = ExcelUtility.readStringData(1, 0, "loginpage");
+	String password = ExcelUtility.readStringData(1, 1, "loginpage");
 		LoginPage loginpage = new LoginPage(driver);//parameterized construction need to create constructor in page class
 		loginpage.enterUserName(username);
 		loginpage.enterPassword(password);

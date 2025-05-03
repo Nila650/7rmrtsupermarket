@@ -49,19 +49,18 @@ public class Base {
 		}
 		//driver.get("https://groceryapp.uniqassosiates.com/admin/login");
 		driver.get(properties.getProperty("url"));
-		 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(WaitUtility.IMPLICIT_WAIT));//implicit wait
+		// driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(WaitUtility.IMPLICIT_WAIT));//implicit wait
 		driver.manage().window().maximize();
 	}
 	
 	@AfterMethod(alwaysRun = true)
 	public void driverQuit(ITestResult iTestResult) throws IOException
 	{
-		//driver.quit();
 		if (iTestResult.getStatus() == ITestResult.FAILURE) {
 			scrshot = new ScreenShotUtility();
 			scrshot.getScreenShot(driver, iTestResult.getName());
+		//driver.quit();//to close all window
 	}
-	
 		driver.quit();
 	
 	}
