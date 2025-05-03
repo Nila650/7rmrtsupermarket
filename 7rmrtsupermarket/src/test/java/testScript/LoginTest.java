@@ -9,7 +9,7 @@ public class LoginTest extends Base {
 	public void verifyTheUserIsAbleToLoginUsingValidCredentials() throws Exception 
 	{
 		String username = "admin";
-		String password = "admin";
+		String password = "abcd";
 	/*String username = ExcelUtility.readStringData(1, 0, "loginpage");
 	String password = ExcelUtility.readStringData(1, 1, "loginpage");*/
 		LoginPage loginpage = new LoginPage(driver);//parameterized construction need to create constructor in page class
@@ -22,10 +22,10 @@ public class LoginTest extends Base {
 @Test
 	public void verifyTheUserIsAbleToLoginUsingCorrectUsernameWrongPassword() throws Exception 
 	{
-		/*String username = "admin";
-		String password = "nila";*/
-	String username = ExcelUtility.readStringData(2, 0, "loginpage");
-	String password = ExcelUtility.readStringData(2, 1, "loginpage");
+		String username = "admin";
+		String password = "nila";
+/*	String username = ExcelUtility.readStringData(2, 0, "loginpage");
+	String password = ExcelUtility.readStringData(2, 1, "loginpage");*/
 		LoginPage loginpage = new LoginPage(driver);
 		loginpage.enterUserName(username);
 		loginpage.enterPassword(password);
