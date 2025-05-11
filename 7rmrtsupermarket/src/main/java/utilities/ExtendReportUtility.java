@@ -7,13 +7,15 @@ public class ExtendReportUtility {
 	public static final ExtentReports extentReports = new ExtentReports();
 
 	public synchronized static ExtentReports createExtentReports() {
-		ExtentSparkReporter reporter = new ExtentSparkReporter("./extent-reports/extent-report.html");//location where to generate report
+		ExtentSparkReporter reporter = new ExtentSparkReporter("./extent-reports/extent-report.html");// location where
+																										// to generate
+																										// report
 		reporter.config().setReportName("Demo Project");
 		extentReports.attachReporter(reporter);
 		extentReports.setSystemInfo("Organization", "Obsqura");
 		extentReports.setSystemInfo("Name", "Nila");
 		extentReports.setSystemInfo("Name", "Navamika");
 		return extentReports;
-		
+
 	}
 }

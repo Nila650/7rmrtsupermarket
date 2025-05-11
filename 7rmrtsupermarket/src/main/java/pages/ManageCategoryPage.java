@@ -14,56 +14,74 @@ import org.openqa.selenium.support.ui.Wait;
 
 import constants.Constants;
 import utilities.FileUploadUtility;
+import utilities.PageUtility;
+import utilities.WaitUtility;
 
 public class ManageCategoryPage {
 	WebDriver driver;
-	@FindBy(xpath="((//a[contains(@href,'https://groceryapp.uniqassosiates.com/admin/list-category')])[3])")WebElement moreinfo;
-	@FindBy(xpath="//a[@onclick='click_button(1)']")WebElement editnew;
-	@FindBy(xpath="//input[@placeholder='Enter the Category']")WebElement category;
-	@FindBy(xpath="//li[@id='134-selectable']")WebElement discount;
-	@FindBy(xpath="//input[@id='main_img']")WebElement chooseimage;
-	@FindBy(xpath="//button[@class='btn btn-danger']")WebElement save;
-	@FindBy(xpath="//div[@class='alert alert-success alert-dismissible']")WebElement alert;
-	public ManageCategoryPage(WebDriver driver)
-	{
-		this.driver=driver;
+	@FindBy(xpath = "((//a[contains(@href,'https://groceryapp.uniqassosiates.com/admin/list-category')])[2])")
+	WebElement managecategorymoreinfo;
+	@FindBy(xpath = "//a[@onclick='click_button(1)']")
+	WebElement editnew;
+	@FindBy(xpath = "//input[@placeholder='Enter the Category']")
+	WebElement category;
+	@FindBy(xpath = "//li[@id='134-selectable']")
+	WebElement discount;
+	@FindBy(xpath = "//input[@id='main_img']")
+	WebElement chooseimage;
+	@FindBy(xpath = "//button[@class='btn btn-danger']")
+	WebElement save;
+	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
+	WebElement alert;
+
+	public ManageCategoryPage(WebDriver driver) {
+		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-	public void clickMoreInfo()
-	{
-		moreinfo.click();
-	}
-	public void clickNew()
-	{
+
+	/*
+	 * public void clickManageCategoryMoreInfo() { managecategorymoreinfo.click(); }
+	 */
+	public ManageCategoryPage clickNew() {
 		editnew.click();
+		return this;
 	}
-	public void enterCategory(String text)
-	{
+
+	public ManageCategoryPage enterCategory(String text) {
 		category.sendKeys(text);
+		return this;
 	}
-	public void clickDiscount()
-	{
-		Wait<WebDriver> fluentWait = new FluentWait<WebDriver>(driver)
-				.withTimeout(Duration.ofSeconds(30))
-				.pollingEvery(Duration.ofSeconds(5))
-				.ignoring(NoSuchElementException.class);//ignore excepion
-				fluentWait.until(ExpectedConditions.elementToBeClickable(discount));
+
+	public ManageCategoryPage clickDiscount() {
+		/*Wait<WebDriver> fluentWait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(30))
+				.pollingEvery(Duration.ofSeconds(5)).ignoring(NoSuchElementException.class);// ignore excepion
+		fluentWait.until(ExpectedConditions.elementToBeClickable(discount));*/
+		WaitUtility waitutility = new WaitUtility();
+		waitutility.waitForElementIsSelectable(driver, alert);
 		discount.click();
+		return this;
 	}
-	public void chooseImage()
-	{
+
+	public ManageCategoryPage chooseImage() {
 		FileUploadUtility fileuploadutility = new FileUploadUtility();
 		fileuploadutility.fileUploadUsingSendKeys(chooseimage, Constants.CARIMAGEFILE);
+		return this;
 	}
-	public void clickSave()
-	{
-		//save.click();
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click();", save);
+
+	public ManageCategoryPage clickSave() {
+		// save.click();
+		PageUtility PageUtility = new PageUtility(driver);
+		PageUtility.jsClick(save);
+		return this;
+
+		/*
+		 * JavascriptExecutor js = (JavascriptExecutor) driver;
+		 * js.executeScript("arguments[0].click();", save); return this;
+		 */
 	}
-	public boolean isAlertDisplayed()
-	{
+
+	public boolean isAlertDisplayed() {
 		return alert.isDisplayed();
 	}
-	
+
 }

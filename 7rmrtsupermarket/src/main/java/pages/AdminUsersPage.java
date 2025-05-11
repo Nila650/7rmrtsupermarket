@@ -11,50 +11,61 @@ import utilities.PageUtility;
 public class AdminUsersPage {
 
 	WebDriver driver;
-	
-	@FindBy(xpath="((//a[contains(@href,'https://groceryapp.uniqassosiates.com/admin/list-admin')])[2])")WebElement moreinfo;
-	@FindBy(xpath="//a[@class='btn btn-rounded btn-danger']")WebElement newadmin;
-	@FindBy(xpath="//input[@id='username']")WebElement usernamevalue;
-	@FindBy(xpath="//input[@id='password']")WebElement passwordvalue;
-	@FindBy(xpath="//select[@id='user_type']")WebElement usertype;
-	@FindBy(xpath="//button[@name='Create']")WebElement save;
-	@FindBy(xpath="//div[@class='alert alert-success alert-dismissible']")WebElement alert;
-	
-	public AdminUsersPage(WebDriver driver)
-	{
-		this.driver=driver;
+
+	@FindBy(xpath = "((//a[contains(@href,'https://groceryapp.uniqassosiates.com/admin/list-admin')])[2])")
+	WebElement adminuserpagemoreinfo;
+	@FindBy(xpath = "//a[@class='btn btn-rounded btn-danger']")
+	WebElement newadmin;
+	@FindBy(xpath = "//input[@id='username']")
+	WebElement usernamevalue;
+	@FindBy(xpath = "//input[@id='password']")
+	WebElement passwordvalue;
+	@FindBy(xpath = "//select[@id='user_type']")
+	WebElement usertype;
+	@FindBy(xpath = "//button[@name='Create']")
+	WebElement save;
+	@FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
+	WebElement alert;
+
+	public AdminUsersPage(WebDriver driver) {
+		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-	
-	public void adminUserInfo()
-	{
-		moreinfo.click();
-	}
-	
-	public void createNew()
-	{
+
+	/*
+	 * public void adminUserInfo() { adminuserpagemoreinfo.click(); }
+	 */
+
+	public AdminUsersPage createNew() {
 		newadmin.click();
+		return this;
 	}
-	public void username(String usernametext)
-	{
+
+	public AdminUsersPage username(String usernametext) {
 		usernamevalue.sendKeys(usernametext);
+		return this;
 	}
-	public void password(String passwordtext)
-	{
+
+	public AdminUsersPage password(String passwordtext) {
 		passwordvalue.sendKeys(passwordtext);
+		return this;
 	}
-	public void userType()
-	{
-		/*Select select = new Select(usertype);
-		select.selectByIndex(1);*/
+
+	public AdminUsersPage userType() {
+		/*
+		 * Select select = new Select(usertype); select.selectByIndex(1);
+		 */
 		PageUtility pageutility = new PageUtility(driver);
 		pageutility.selectByIndex(usertype, 1);
+		return this;
 	}
-	public void save() {
+
+	public AdminUsersPage save() {
 		save.click();
+		return this;
 	}
-	public boolean isAlertDisplayed()
-	{
+
+	public boolean isAlertDisplayed() {
 		return alert.isDisplayed();
 	}
 }

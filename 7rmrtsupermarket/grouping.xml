@@ -10,9 +10,9 @@
   </groups>
     <classes>
       
-      <class name="testScript.ManageNewsTest">
+      <class name="testScript.LoginTest">
       <methods>
-       <include name="verifyIfUserIsAbleToSaveNews"></include> 
+       <include name="verifyTheUserIsAbleToLoginUsingValidCredentials"></include> 
       
       </methods>
      </class>
